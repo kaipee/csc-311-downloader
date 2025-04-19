@@ -6,7 +6,7 @@ on:
             - main
     workflow_dispatch:
     schedule:
-        - cron: '0 0 9 * *' # Runs at midnight UTC on the 9th day of every month
+        - cron: '0 0 10 * *' # Runs at midnight UTC on the 9th day of every month
 
 jobs:
     run-script:
