@@ -106,17 +106,21 @@ def upload_files_to_drive_as_sheets(folder_id, file_path):
             encoded_creds = os.getenv('GOOGLE_SECRET')
             if not encoded_creds:
                 print("Error: 'GOOGLE_SECRET' environment variable not found. Please set it in your environment.")
-                return
+                exit(1)
             decoded_creds = base64.b64decode(encoded_creds).decode('utf-8')
             creds_dict = json.loads(decoded_creds)
             creds = Credentials.from_service_account_info(creds_dict)
             print("Using credentials from 'GOOGLE_SECRET' environment variable")
     except Exception as e:
         print(f"Error loading credentials: {e}")
-        return
+        exit(1)
 
     # Authenticate and create the Drive API client
-    drive_service = build('drive', 'v3', credentials=creds)
+    try:
+        drive_service = build('drive', 'v3', credentials=creds)
+    except Exception as e:
+        print(f"Error authenticating with Google Drive API: {e}")
+        exit(1)
 
     # Check if a file with the same name already exists in the folder
     query = f"'{folder_id}' in parents and name='{os.path.basename(file_path).replace('.csv', '')}' and trashed=false"
