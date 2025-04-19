@@ -107,7 +107,7 @@ def upload_files_to_drive_as_sheets(folder_id, file_path):
             if not encoded_creds:
                 print("Error: 'GOOGLE_SECRET' environment variable not found. Please set it in your environment.")
                 exit(1)
-            decoded_creds = base64.b64decode(encoded_creds).decode('utf-8')
+            decoded_creds = encoded_creds
             creds_dict = json.loads(decoded_creds)
             creds = Credentials.from_service_account_info(creds_dict)
             print("Using credentials from 'GOOGLE_SECRET' environment variable")
