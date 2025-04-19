@@ -103,14 +103,14 @@ def upload_files_to_drive_as_sheets(folder_id, file_path):
             creds = Credentials.from_service_account_file("service_account.json")
             print("Using credentials from 'service_account.json'")
         else:
-            encoded_creds = os.getenv(' GOOGLE_SECRET ')
+            encoded_creds = os.getenv('GOOGLE_SECRET')
             if not encoded_creds:
-                print("Error: ' GOOGLE_SECRET ' environment variable not found. Please set it in your environment.")
+                print("Error: 'GOOGLE_SECRET' environment variable not found. Please set it in your environment.")
                 return
             decoded_creds = base64.b64decode(encoded_creds).decode('utf-8')
             creds_dict = json.loads(decoded_creds)
             creds = Credentials.from_service_account_info(creds_dict)
-            print("Using credentials from ' GOOGLE_SECRET ' environment variable")
+            print("Using credentials from 'GOOGLE_SECRET' environment variable")
     except Exception as e:
         print(f"Error loading credentials: {e}")
         return
