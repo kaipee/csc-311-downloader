@@ -99,9 +99,9 @@ for csv_file in csv_files:
 def upload_files_to_drive_as_sheets(folder_id, file_path):
     # Load credentials from service account key file or environment variable
     try:
-        if os.path.exists("services_account.json"):
-            creds = Credentials.from_service_account_file("services_account.json")
-            print("Using credentials from 'services_account.json'")
+        if os.path.exists("service_account.json"):
+            creds = Credentials.from_service_account_file("service_account.json")
+            print("Using credentials from 'service_account.json'")
         else:
             encoded_creds = os.getenv(' GOOGLE_SECRET ')
             if not encoded_creds:
